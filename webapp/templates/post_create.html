@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Create{% endblock %}
+
+
+{% block content %}     <h1>Create article</h1>
+
+    <form action="/post_create" method="post">
+        {% csrf_token %}
+
+        <label>Title:</label><br/>
+        <input type="text" name="title"/><br/>
+        <label>Text:</label><br/>
+        <textarea name="text"></textarea><br/>
+        <br/>
+        <input type="submit" value="Send"/>
+    </form>
+{% endblock %}

@@ -1,0 +1,154 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: rgb(222, 240, 204);
+
+            color: #222222;
+
+            margin-top: 30px;
+
+        }
+
+
+
+        a {
+
+            text-decoration: none;
+
+            color: inherit;
+
+        }
+
+
+
+        a:hover, a:visited {
+
+            color: inherit;
+
+        }
+
+
+
+        .navbar {
+
+            display: block;
+
+            background: #6a7dff;
+
+            position: fixed;
+
+            top: 0;
+
+            right: 0;
+
+            left: 0;
+
+            font-size: 0;
+
+            box-sizing: border-box;
+
+            padding: 7px 30px;
+
+        }
+
+
+
+        .menu {
+
+            font-size: 14px;
+
+            line-height: 1;
+
+            padding: 0;
+
+            margin: 0;
+
+            display: inline-block;
+
+            color: #fffee8;
+
+        }
+
+
+
+.menu li {
+    display: inline-block;
+    background-color: #003366;
+    border-radius: 20%;
+    border: groove;
+    padding: 1px;
+}
+.div {
+    background-color: #336699;
+    border-radius: 20%;
+    border: groove;
+    padding: 4px;
+}
+.menu li a {
+    display: inline-block;
+}
+
+.menu li a:hover {
+    color: #ffc122;
+}
+
+        .menu li a:hover {
+
+            color: #ffc122;
+        }
+        h1 {
+
+            text-align: center;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <ul class="menu">
+            <ul class="navbar-nav">
+                <li><a href = "{% url 'index' %}">Посты</a></li>
+                <li><a href = "{% url 'user_list' %}">Пользователи</a></li>
+                {% if user.is_authenticated %}
+                <li><a href = "{% url 'post_create' %}">Новый пост</a></li>
+                <li class="nav-item">
+                    <a href="{% url 'logout' %}" class="nav-link">Выход</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'login' %}" class="nav-link">Вход</a>
+                </li>
+                {% endif %}
+            {% block menu %}
+            {% endblock %}
+        </ul>
+    </nav>
+    {% block content %}{% endblock %}
+
+</body>
+
+</html>

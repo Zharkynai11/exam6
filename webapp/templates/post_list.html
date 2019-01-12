@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block menu %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <h1>Статьи</h1>
+    {% for post in object_list %}
+    <div style="background-color: #99BBFF;
+    border: groove;
+    padding: 4px;">
+        <a href='{% url "post_detail" post.pk %}'>{{ post.title }}</a>
+        <p align="right">{{post.author.username}}</p>
+        <p align="right">{{post.date}}</p>
+    </div>
+{% endfor %}
+
+{% endblock %}

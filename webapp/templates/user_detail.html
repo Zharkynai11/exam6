@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}View{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+    <h1>Информация</h1>
+    {%if object.image %}
+    <img src= "{{object.image.url}}">
+    {% endif %}
+    <p>{{object.image}}</p>
+    <p>Имя:   {{object.user.username}} </p>
+    <p>Почта:   {{object.user.email}}  </p>
+    <p>Номер: <input id = "phone" type="button" value="Отобразить"></p>
+
+
+  <script>
+
+    let button = document.getElementById('phone');
+    button.onclick = function() {
+      button.value = {{object.phone}};
+    };
+
+  </script>
+    {% for post in posts %}
+    {% if post.author == object.user %}
+    <div style="background-color: #99BBFF;
+    border: groove;
+    padding: 4px;">
+        <a href='{% url "post_detail" post.pk %}'>{{ post.title }}</a>
+        <p align="right">{{post.date}}</p>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% for friend in object.friend.all %}
+        <p>{{friend.username}}</p>
+    {% endfor %}
+    {% if user == object.user %}
+        <a href="../{{object.pk}}/update_user"><button>Редактировать</button></a>
+    {% endif %}
+{% endblock %}

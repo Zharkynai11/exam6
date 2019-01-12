@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Удалить задачу{% endblock %}
+
+{% block content %}
+
+    <h2>Вы уверены, что хотите удалить пост "{{ post.name }}"?</h2>
+
+    <form action="{% url 'post_delete' post.pk %}" method="post">
+
+        {% csrf_token %}
+
+        <input type="radio" value="yes" name="delete"> Да<br>
+
+        <input type="radio" value="no" checked name="delete"> Нет<br>
+
+        <input type="submit" value="Подтвердить">
+
+    </form>
+
+{% endblock %}
